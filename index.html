@@ -7,28 +7,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
+/* ── FOUNDATION ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --ink: #0c0c0b;
-  --ink-2: #181816;
-  --ink-3: #222220;
-  --ink-4: #2a2a27;
+  --ink-2: #161614;
+  --ink-3: #1f1f1d;
   --gold: #c9a96e;
-  --gold-light: #e3cfa0;
   --gold-dim: #7a6040;
-  --gold-glow: rgba(201,169,110,0.12);
   --text-primary: #ede9e0;
   --text-secondary: #968f83;
   --text-dim: #504d47;
   --border: rgba(201,169,110,0.12);
   --border-mid: rgba(201,169,110,0.22);
-  --border-strong: rgba(201,169,110,0.4);
   --serif: 'DM Serif Display', Georgia, serif;
   --sans: 'Instrument Sans', system-ui, sans-serif;
   --serif2: 'Instrument Serif', Georgia, serif;
-  --max: 1080px;
-  --max-narrow: 680px;
+  --max: 1040px;
 }
 
 html { scroll-behavior: smooth; }
@@ -36,1546 +32,374 @@ body {
   font-family: var(--sans);
   background: var(--ink);
   color: var(--text-primary);
-  line-height: 1.7;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* ── BASE UTILITIES ── */
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
-.wrap-narrow { max-width: var(--max-narrow); margin: 0 auto; padding: 0 2.5rem; }
-section { padding: 8rem 0; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+section { padding: 7rem 0; }
 .center { text-align: center; }
 
+/* ── TYPOGRAPHY ── */
 .label {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: block;
-  margin-bottom: 1.6rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.2rem;
 }
-.label-row {
-  display: flex; align-items: center; justify-content: center; gap: 1rem;
-  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 2rem;
-}
-.label-row::before, .label-row::after {
-  content: ''; width: 28px; height: 1px; background: var(--gold-dim);
-}
-
 h1 {
-  font-family: var(--serif);
-  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
-  line-height: 1.06;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-  margin-bottom: 2rem;
+  font-family: var(--serif); font-size: clamp(2.8rem, 8vw, 4.5rem);
+  line-height: 1.05; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 1.5rem;
 }
 h1 em { font-style: italic; color: var(--gold); }
 
 h2 {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 3.8vw, 3rem);
-  font-weight: 400;
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  margin-bottom: 1.5rem;
+  font-family: var(--serif); font-size: clamp(2.2rem, 6vw, 3.2rem);
+  font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.2rem;
 }
 h2 em { font-style: italic; color: var(--gold); }
 
 h3 {
-  font-family: var(--serif);
-  font-size: 1.7rem;
-  font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 1rem;
+  font-family: var(--serif); font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-weight: 400; line-height: 1.2; margin-bottom: 0.8rem;
 }
 
-.body {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  line-height: 1.85;
-}
-.body + .body { margin-top: 1.2rem; }
+.body-large { font-size: clamp(1.1rem, 3vw, 1.25rem); color: var(--text-secondary); line-height: 1.6; }
+.body-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.6; }
 
-.gold-rule {
-  width: 36px; height: 1px;
-  background: var(--gold-dim);
-  margin: 2.5rem 0;
-}
-.gold-rule.center { margin: 2.5rem auto; }
-
-/* ── BUTTONS ── */
+/* ── UI ELEMENTS ── */
 .btn {
-  display: inline-flex; align-items: center; gap: 0.7rem;
-  font-family: var(--sans); font-size: 0.82rem; font-weight: 600;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  font-family: var(--sans); font-size: 0.85rem; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-  padding: 1.05rem 2.4rem;
-  transition: all 0.22s;
+  padding: 1.1rem 2.2rem; transition: all 0.2s; border: none; cursor: pointer;
 }
-.btn-gold {
-  background: var(--gold); color: #0c0c0b;
-}
-.btn-gold:hover { opacity: 0.88; transform: translateY(-1px); }
-.btn-outline {
-  border: 0.5px solid var(--border-mid); color: var(--text-secondary);
-}
-.btn-outline:hover { border-color: var(--gold); color: var(--text-primary); }
+.btn-gold { background: var(--gold); color: var(--ink); }
+.btn-gold:hover { transform: translateY(-2px); opacity: 0.9; }
+.btn-outline { border: 1px solid var(--border-mid); color: var(--text-primary); }
+.btn-outline:hover { border-color: var(--gold); }
 
 /* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 1.4rem 2.5rem;
-  display: flex; justify-content: space-between; align-items: center;
-  background: rgba(12,12,11,0.88);
-  backdrop-filter: blur(24px);
-  border-bottom: 0.5px solid var(--border);
+  padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center;
+  background: rgba(12,12,11,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
 }
-.nav-logo {
-  font-family: var(--serif); font-size: 1.15rem;
-  color: var(--gold); text-decoration: none; letter-spacing: 0.02em;
-}
-.nav-links { display: flex; align-items: center; gap: 2.5rem; }
-.nav-link {
-  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
-  text-transform: uppercase; color: var(--text-dim); text-decoration: none;
-  transition: color 0.2s;
-}
-.nav-link:hover { color: var(--text-secondary); }
+.nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--gold); text-decoration: none; }
 .nav-cta {
-  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--gold);
-  border: 0.5px solid var(--border-mid);
-  padding: 0.5rem 1.3rem; text-decoration: none;
-  transition: background 0.22s, border-color 0.22s;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--border-mid); padding: 0.5rem 1rem; text-decoration: none;
 }
-.nav-cta:hover { background: rgba(201,169,110,0.08); border-color: var(--gold); }
 
-/* ── HERO ── */
+/* ── 1. HERO ── */
 #hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  padding-top: 7rem;
-  position: relative; overflow: hidden;
+  min-height: 95vh; display: flex; align-items: center; position: relative; padding-top: 5rem;
 }
 .hero-glow {
   position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse 55% 55% at 75% 35%, rgba(201,169,110,0.07) 0%, transparent 65%),
-    radial-gradient(ellipse 35% 45% at 5% 85%, rgba(201,169,110,0.04) 0%, transparent 55%);
+  background: radial-gradient(circle at 50% 30%, rgba(201,169,110,0.08) 0%, transparent 60%);
 }
-.hero-inner {
-  display: grid; grid-template-columns: 1.1fr 0.9fr;
-  gap: 5rem; align-items: center;
-}
-.hero-kicker {
-  display: flex; align-items: center; gap: 0.8rem;
-  margin-bottom: 2.2rem;
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--gold);
-}
-.hero-kicker-dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--gold); flex-shrink: 0;
-}
-.hero-sub {
-  font-size: 1.08rem; color: var(--text-secondary);
-  line-height: 1.82; max-width: 500px; margin-bottom: 3rem;
-}
-.hero-actions { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.hero-content { max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+.hero-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
 
-/* hero right panel */
-.hero-panel {
-  background: var(--ink-2);
-  border: 0.5px solid var(--border);
-  padding: 0;
-  overflow: hidden;
-}
-.panel-header {
-  padding: 1.2rem 1.8rem;
-  border-bottom: 0.5px solid var(--border);
-  display: flex; align-items: center; gap: 0.8rem;
-}
-.panel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-.panel-title {
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--text-dim);
-}
-.panel-body { padding: 1.8rem; }
-.panel-metric {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  padding: 1.2rem 0; border-bottom: 0.5px solid var(--border);
-}
-.panel-metric:first-child { padding-top: 0; }
-.panel-metric:last-child { border-bottom: none; padding-bottom: 0; }
-.pm-label { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; max-width: 180px; }
-.pm-val {
-  font-family: var(--serif); font-size: 1.7rem; color: var(--gold);
-  line-height: 1; text-align: right; flex-shrink: 0;
-}
-.pm-dir {
-  font-size: 0.7rem; font-weight: 600; color: #5a9e6f;
-  display: block; text-align: right; margin-top: 0.2rem; letter-spacing: 0.06em;
-}
-.panel-quote {
-  margin-top: 1.2rem;
-  padding: 1.4rem 1.8rem;
-  border-top: 0.5px solid var(--border);
-  font-family: var(--serif2); font-style: italic;
-  font-size: 0.92rem; color: var(--text-secondary); line-height: 1.65;
-}
+/* ── 2. THE REAL PROBLEM ── */
+#problem { background: var(--ink-2); padding: 6rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.punchy-statement { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
+.punchy-statement h2 { color: var(--text-primary); }
+.problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.prob-card { background: var(--ink); border: 1px solid var(--border); padding: 2.5rem 2rem; }
+.prob-card h3 { color: var(--gold); font-size: 1.4rem; margin-bottom: 0.5rem; }
 
-/* ── TRUST BAR ── */
-#trust {
-  padding: 0;
-  border-top: 0.5px solid var(--border);
-  border-bottom: 0.5px solid var(--border);
-  background: var(--ink-2);
+/* ── PROOF INTERRUPTION 1: NOTIFICATION ── */
+.notif-strip { padding: 3rem 0; text-align: center; }
+.notif-badge {
+  display: inline-flex; align-items: center; gap: 1rem; 
+  background: rgba(255,255,255,0.02); border: 1px solid var(--border-mid); 
+  padding: 0.8rem 1.8rem; border-radius: 100px; 
 }
-.trust-inner {
-  display: flex; align-items: center;
-  padding: 2.2rem 0; gap: 3rem; flex-wrap: wrap;
-}
-.trust-label {
-  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--text-dim); white-space: nowrap; flex-shrink: 0;
-}
-.trust-sep { width: 1px; height: 28px; background: var(--border); flex-shrink: 0; }
-.trust-items { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; flex: 1; }
-.trust-item {
-  font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.04em;
-  display: flex; align-items: center; gap: 0.5rem;
-  transition: color 0.2s;
-}
-.trust-item:hover { color: var(--text-secondary); }
-.trust-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold-dim); flex-shrink: 0; }
+.notif-pulse { width: 8px; height: 8px; background: #5a9e6f; border-radius: 50%; box-shadow: 0 0 10px rgba(90,158,111,0.5); }
+.notif-text { font-size: 0.85rem; color: var(--text-primary); font-weight: 500; letter-spacing: 0.02em; }
+.notif-time { font-size: 0.75rem; color: var(--text-dim); margin-left: 0.5rem; }
 
-/* ── VISION — "IMAGINE THIS" ── */
-#vision { background: var(--ink-2); padding: 8rem 0; }
-.vision-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 5rem; align-items: center; margin-top: 4rem;
+/* ── 3. DESIRED OUTCOME ── */
+#outcome { padding: 6rem 0; text-align: center; }
+.outcome-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;
+  margin-top: 4rem; text-align: left;
 }
-.vision-items { display: flex; flex-direction: column; gap: 0; }
-.vision-item {
-  display: flex; gap: 1.5rem; align-items: flex-start;
-  padding: 1.8rem 0; border-bottom: 0.5px solid var(--border);
-  position: relative;
+.outcome-item { display: flex; gap: 1rem; align-items: flex-start; }
+.outcome-icon { color: var(--gold); font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
+.outcome-text strong { display: block; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.2rem; }
+
+/* ── PROOF INTERRUPTION 2: TESTIMONIAL ── */
+.testimonial-strip {
+  background: var(--ink-2); padding: 5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center;
 }
-.vision-item:first-child { padding-top: 0; }
-.vision-item:last-child { border-bottom: none; }
-.vi-icon {
-  width: 38px; height: 38px; flex-shrink: 0;
-  background: rgba(201,169,110,0.07);
-  border: 0.5px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem;
+.test-quote { font-family: var(--serif2); font-size: clamp(1.4rem, 3vw, 1.8rem); color: var(--gold); font-style: italic; max-width: 800px; margin: 0 auto 1.5rem; line-height: 1.4; padding: 0 1rem;}
+.test-author { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); }
+
+/* ── 4. THE SYSTEM (4 PILLARS) ── */
+#system { padding: 7rem 0; }
+.sys-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 4rem; }
+.sys-card { background: var(--ink-2); border: 1px solid var(--border); padding: 3rem 2rem; position: relative; }
+.sys-num {
+  font-family: var(--serif); font-size: 3rem; color: rgba(201,169,110,0.1);
+  position: absolute; top: 1.5rem; right: 2rem; line-height: 1;
 }
-.vi-text strong {
-  display: block; font-size: 0.95rem; font-weight: 600;
-  color: var(--text-primary); margin-bottom: 0.3rem;
+.sys-card h3 { margin-top: 1rem; }
+
+/* ── 5. PROOF / RESULTS ── */
+#proof { background: var(--ink-2); padding: 7rem 0; border-top: 1px solid var(--border); }
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px;
+  background: var(--border); margin: 4rem 0; border: 1px solid var(--border);
 }
-.vi-text span { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
-.vision-right {
-  background: var(--ink);
-  border: 0.5px solid var(--border);
-  padding: 3rem;
-}
-.vision-quote {
-  font-family: var(--serif); font-size: clamp(1.4rem, 2.5vw, 1.85rem);
-  font-weight: 400; line-height: 1.3; color: var(--text-primary); margin-bottom: 2rem;
-}
-.vision-quote em { font-style: italic; color: var(--gold); }
-.vision-attribution {
-  font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.06em;
+.metric-card { background: var(--ink); padding: 3rem 2rem; text-align: center; }
+.metric-val { font-family: var(--serif); font-size: 3.5rem; color: var(--gold); display: block; line-height: 1; margin-bottom: 0.5rem; }
+.metric-label { font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+.industry-strip {
+  text-align: center; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; color: var(--text-dim); text-transform: uppercase;
 }
 
-/* ── PROBLEM ── */
-#problem { padding: 8rem 0; }
-.problem-header { max-width: 600px; margin-bottom: 5rem; }
-.problem-cards {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-  background: var(--border);
+/* ── 6. WHY THIS WORKS (ABOUT / MECHANISM) ── */
+#why-it-works { padding: 7rem 0; border-top: 1px solid var(--border); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.about-image {
+  position: relative; width: 100%; padding-top: 148.63%; /* 1250/841 aspect ratio */
+  background: var(--ink-3); border: 1px solid var(--border-mid); overflow: hidden;
 }
-.prob-card {
-  background: var(--ink); padding: 2.8rem 2.2rem;
-  transition: background 0.25s;
+.about-image img {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(20%) contrast(110%);
 }
-.prob-card:hover { background: var(--ink-2); }
-.prob-num {
-  font-family: var(--serif); font-size: 2.5rem;
-  color: rgba(201,169,110,0.1); line-height: 1; margin-bottom: 1.5rem;
+.contrast-list { list-style: none; margin-top: 2rem; margin-bottom: 2rem;}
+.contrast-list li {
+  display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border);
+  color: var(--text-secondary); font-size: 0.95rem;
 }
-.prob-title {
-  font-size: 0.9rem; font-weight: 600; color: var(--text-primary);
-  margin-bottom: 0.8rem; line-height: 1.4;
-}
-.prob-text { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.75; }
-.prob-impact {
-  margin-top: 1.5rem; padding-top: 1.5rem;
-  border-top: 0.5px solid var(--border);
-  font-size: 0.8rem; color: var(--gold-dim); font-weight: 500; letter-spacing: 0.02em;
-}
+.contrast-list li::before { content: '→'; color: var(--gold); }
+.sig { font-family: var(--serif2); font-size: 1.8rem; color: var(--gold); font-style: italic; margin-top: 1rem; }
 
-/* ── BIG INSIGHT ── */
-.big-insight {
-  background: var(--ink-2);
-  border-top: 0.5px solid var(--border);
-  border-bottom: 0.5px solid var(--border);
-  padding: 7rem 0;
-}
-.bi-inner {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 6rem; align-items: center;
-}
-.bi-statement {
-  font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.5rem);
-  font-weight: 400; line-height: 1.22; color: var(--text-primary);
-}
-.bi-statement em { font-style: italic; color: var(--gold); }
-.bi-right { display: flex; flex-direction: column; gap: 1.8rem; }
-.bi-point {
-  display: flex; gap: 1.2rem; align-items: flex-start;
-  padding-bottom: 1.8rem; border-bottom: 0.5px solid var(--border);
-}
-.bi-point:last-child { border-bottom: none; padding-bottom: 0; }
-.bi-arrow { color: var(--gold); font-size: 0.9rem; margin-top: 0.2rem; flex-shrink: 0; }
-.bi-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
-.bi-text strong { color: var(--text-primary); font-weight: 600; }
+/* ── 7. CTA ── */
+#cta { background: var(--ink-2); padding: 8rem 0; text-align: center; border-top: 1px solid var(--border); }
+.cta-box { max-width: 600px; margin: 0 auto; }
+.cta-meta { margin-top: 2.5rem; font-size: 0.75rem; color: var(--text-dim); display: flex; justify-content: center; gap: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;}
 
-/* ── STATUS SECTION ── */
-#status { padding: 8rem 0; }
-.status-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 5rem; align-items: start; margin-top: 4rem;
-}
-.status-left { }
-.status-headline {
-  font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 400; line-height: 1.22; color: var(--text-primary); margin-bottom: 1.5rem;
-}
-.status-headline em { font-style: italic; color: var(--gold); }
-.status-points { margin-top: 2rem; list-style: none; }
-.status-points li {
-  display: flex; gap: 1rem; align-items: flex-start;
-  padding: 1rem 0; border-bottom: 0.5px solid var(--border);
-  font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65;
-}
-.status-points li:last-child { border-bottom: none; }
-.status-points li::before {
-  content: '→'; color: var(--gold); flex-shrink: 0; margin-top: 0.1rem;
-}
-.status-right {
-  background: var(--ink-2); border: 0.5px solid var(--border);
-  border-left: 2px solid var(--gold); padding: 3rem;
-}
-.status-box-label {
-  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 2rem;
-}
-.who-block {
-  padding: 1.5rem 0; border-bottom: 0.5px solid var(--border);
-}
-.who-block:last-child { border-bottom: none; padding-bottom: 0; }
-.who-title {
-  font-size: 0.82rem; font-weight: 600; color: var(--text-primary);
-  margin-bottom: 0.4rem;
-}
-.who-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.65; }
-
-/* ── CONTRARIAN ── */
-#contrarian { background: var(--ink-2); padding: 8rem 0; }
-.contra-header { text-align: center; max-width: 580px; margin: 0 auto 5rem; }
-.contra-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-  background: var(--border);
-}
-.contra-card {
-  background: var(--ink-2); padding: 3rem 2.4rem;
-  transition: background 0.25s;
-}
-.contra-card:hover { background: var(--ink-3); }
-.contra-num {
-  font-family: var(--serif); font-size: 2.2rem;
-  color: rgba(201,169,110,0.1); line-height: 1; margin-bottom: 1.5rem;
-}
-.contra-title {
-  font-size: 0.88rem; font-weight: 600; color: var(--gold);
-  margin-bottom: 0.9rem; letter-spacing: 0.01em; line-height: 1.4;
-}
-.contra-text { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.75; }
-
-/* ── FRAMEWORK ── */
-#framework { padding: 8rem 0; }
-.fw-header { text-align: center; max-width: 620px; margin: 0 auto 5.5rem; }
-.fw-badge {
-  display: inline-block; font-size: 0.7rem; font-weight: 600;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold);
-  border: 0.5px solid var(--border-mid); padding: 0.45rem 1.3rem; margin-bottom: 2rem;
-}
-.fw-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-}
-.fw-card {
-  background: var(--ink-2); border: 0.5px solid var(--border);
-  padding: 2.8rem 2.2rem; position: relative;
-  transition: border-color 0.25s, background 0.25s;
-  overflow: hidden;
-}
-.fw-card:hover { border-color: var(--gold-dim); background: var(--ink-3); }
-.fw-card-glow {
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-  opacity: 0; transition: opacity 0.3s;
-}
-.fw-card:hover .fw-card-glow { opacity: 1; }
-.fw-num {
-  width: 34px; height: 34px; border: 0.5px solid var(--border-mid);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 0.85rem; color: var(--gold);
-  margin-bottom: 1.8rem;
-}
-.fw-title {
-  font-size: 0.95rem; font-weight: 600; color: var(--text-primary);
-  margin-bottom: 0.5rem; letter-spacing: 0.01em;
-}
-.fw-outcome {
-  font-size: 0.88rem; color: var(--gold-light); margin-bottom: 1rem;
-  line-height: 1.45; font-style: italic; font-family: var(--serif2);
-}
-.fw-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.72; }
-.fw-tag {
-  display: inline-block; margin-top: 1.5rem; font-size: 0.68rem;
-  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-/* ── RESULT STATE — "When It Works" ── */
-#result-state { background: var(--ink-2); padding: 8rem 0; }
-.rs-header { max-width: 600px; margin: 0 auto 5rem; text-align: center; }
-.rs-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-  background: var(--border); margin-bottom: 5rem;
-}
-.rs-card {
-  background: var(--ink-2); padding: 3rem 2.2rem;
-  border-top: 2px solid transparent; transition: border-color 0.3s, background 0.25s;
-}
-.rs-card:hover { border-top-color: var(--gold); background: var(--ink-3); }
-.rs-icon { font-size: 1.5rem; margin-bottom: 1.5rem; opacity: 0.7; }
-.rs-title { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.7rem; }
-.rs-text { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.75; }
-
-/* case study mini blocks */
-.case-studies {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-}
-.case-card {
-  background: var(--ink); border: 0.5px solid var(--border); padding: 2.5rem 2rem;
-  position: relative; overflow: hidden;
-}
-.case-card::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
-  background: var(--gold);
-}
-.case-tag {
-  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1.5rem;
-  display: block;
-}
-.case-metrics {
-  display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;
-}
-.case-metric { display: flex; justify-content: space-between; align-items: baseline; }
-.cm-label { font-size: 0.78rem; color: var(--text-secondary); }
-.cm-val {
-  font-family: var(--serif); font-size: 1.4rem; color: var(--text-primary); line-height: 1;
-}
-.cm-dir { font-size: 0.7rem; color: #5a9e6f; font-weight: 600; margin-left: 0.3rem; }
-.case-outcome {
-  padding-top: 1.2rem; border-top: 0.5px solid var(--border);
-  font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; font-style: italic;
-}
-
-/* ── ARCHITECTURE / INDUSTRIES ── */
-#industries { padding: 8rem 0; }
-.ind-header { max-width: 600px; margin-bottom: 4.5rem; }
-.industry-tabs {
-  display: flex; border-bottom: 0.5px solid var(--border);
-  margin-bottom: 4.5rem; flex-wrap: wrap; gap: 0;
-}
-.industry-tab {
-  font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--text-dim); padding: 1rem 1.6rem; cursor: pointer;
-  border: none; border-bottom: 2px solid transparent; margin-bottom: -0.5px;
-  background: none; transition: color 0.2s, border-color 0.2s;
-}
-.industry-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-.industry-tab:hover:not(.active) { color: var(--text-secondary); }
-.industry-panel { display: none; }
-.industry-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-.ind-emoji { font-size: 1.6rem; margin-bottom: 1.5rem; opacity: 0.65; display: block; }
-.ind-pain-list { list-style: none; margin-top: 1.8rem; }
-.ind-pain-list li {
-  display: flex; gap: 0.9rem; align-items: flex-start;
-  padding: 0.8rem 0; border-bottom: 0.5px solid rgba(201,169,110,0.07);
-  font-size: 0.87rem; color: var(--text-secondary); line-height: 1.65;
-}
-.ind-pain-list li:last-child { border-bottom: none; }
-.ind-pain-list li::before { content: '—'; color: var(--text-dim); flex-shrink: 0; }
-.ind-solution {
-  background: var(--ink-2); border: 0.5px solid var(--border); padding: 2.8rem;
-}
-.sol-item {
-  display: flex; gap: 1.2rem; margin-bottom: 1.8rem;
-  padding-bottom: 1.8rem; border-bottom: 0.5px solid var(--border);
-  align-items: flex-start;
-}
-.sol-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.sol-num {
-  width: 28px; height: 28px; border: 0.5px solid var(--border-mid);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  font-size: 0.7rem; font-weight: 600; color: var(--gold); font-family: var(--sans);
-}
-.sol-body strong { display: block; font-size: 0.88rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; }
-.sol-body span { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.65; }
-
-/* ── DIFFERENTIATION ── */
-#differentiation { background: var(--ink-2); padding: 8rem 0; }
-.diff-header { max-width: 560px; margin-bottom: 4.5rem; }
-.diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-.diff-col { padding: 3rem; }
-.diff-generic { background: var(--ink); border: 0.5px solid rgba(255,255,255,0.04); opacity: 0.6; }
-.diff-mine { background: var(--ink-3); border: 0.5px solid var(--border-mid); }
-.diff-col-head {
-  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; margin-bottom: 2.2rem;
-  display: flex; align-items: center; gap: 0.8rem;
-}
-.diff-generic .diff-col-head { color: var(--text-dim); }
-.diff-mine .diff-col-head { color: var(--gold); }
-.diff-row {
-  display: flex; gap: 0.9rem; align-items: flex-start;
-  margin-bottom: 1.1rem; font-size: 0.87rem; line-height: 1.6;
-}
-.diff-generic .diff-row { color: var(--text-dim); }
-.diff-mine .diff-row { color: var(--text-secondary); }
-.diff-sym { flex-shrink: 0; margin-top: 0.1rem; font-size: 0.75rem; }
-.diff-mine .diff-sym { color: var(--gold); }
-.diff-generic .diff-sym { color: var(--text-dim); opacity: 0.4; }
-
-/* ── PROCESS ── */
-#process { padding: 8rem 0; }
-.process-header { text-align: center; max-width: 520px; margin: 0 auto 5rem; }
-.process-steps {
-  max-width: 700px; margin: 0 auto;
-}
-.process-step {
-  display: flex; gap: 2.5rem; align-items: flex-start;
-  padding: 2.8rem 0; border-bottom: 0.5px solid var(--border);
-}
-.process-step:first-child { padding-top: 0; }
-.process-step:last-child { border-bottom: none; }
-.ps-num {
-  font-family: var(--serif); font-size: 1.6rem;
-  color: rgba(201,169,110,0.2); min-width: 48px; line-height: 1; padding-top: 0.2rem;
-}
-.ps-content strong {
-  display: block; font-size: 1rem; font-weight: 600;
-  color: var(--text-primary); margin-bottom: 0.5rem;
-}
-.ps-content p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.75; }
-.ps-tag {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  margin-top: 0.8rem; font-size: 0.7rem; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dim);
-}
-
-/* ── TOOLKIT ── */
-#toolkit { background: var(--ink-2); padding: 8rem 0; }
-.tk-header { max-width: 500px; margin-bottom: 4.5rem; }
-.tk-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-  background: var(--border);
-}
-.tk-card {
-  background: var(--ink-2); padding: 2.2rem 1.8rem;
-  text-align: center; transition: background 0.22s;
-}
-.tk-card:hover { background: var(--ink-3); }
-.tk-icon {
-  width: 44px; height: 44px; border: 0.5px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 1.2rem; font-size: 1.1rem;
-}
-.tk-name { font-size: 0.82rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; }
-.tk-role { font-size: 0.74rem; color: var(--text-dim); line-height: 1.5; }
-
-/* ── INSIGHTS ── */
-.insights-band {
-  background: var(--ink-3);
-  border-top: 0.5px solid var(--border);
-  padding: 7rem 0;
-}
-.insights-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 4rem; }
-.insight-card {
-  border: 0.5px solid var(--border); padding: 2.5rem;
-  position: relative; overflow: hidden;
-  transition: border-color 0.25s;
-}
-.insight-card:hover { border-color: var(--gold-dim); }
-.insight-card::after {
-  content: '"'; position: absolute;
-  bottom: -1.5rem; right: 1.5rem;
-  font-family: var(--serif); font-size: 8rem;
-  color: rgba(201,169,110,0.05); line-height: 1; pointer-events: none;
-}
-.insight-card p {
-  font-family: var(--serif2); font-style: italic;
-  font-size: 1.02rem; color: var(--text-primary); line-height: 1.65; margin-bottom: 1.2rem;
-  position: relative; z-index: 1;
-}
-.insight-card cite {
-  font-size: 0.72rem; color: var(--gold-dim); font-style: normal;
-  letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase;
-}
-
-/* ── ABOUT (NEW SECTION) ── */
-#about {
-  padding: 8rem 0;
-  background: var(--ink-2);
-  border-top: 0.5px solid var(--border);
-  border-bottom: 0.5px solid var(--border);
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 6rem;
-  align-items: center;
-}
-.about-image-wrapper {
-  position: relative;
-  /* Aspect Ratio based on 841x1250 */
-  padding-top: 148.63%;
-  background: var(--ink-3);
-  border: 0.5px solid var(--border-strong);
-  overflow: hidden;
-}
-.about-image-wrapper::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(201,169,110,0.15);
-  pointer-events: none;
-  z-index: 2;
-}
-.about-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(15%) contrast(105%);
-  transition: transform 0.7s ease;
-}
-.about-image-wrapper:hover .about-img {
-  transform: scale(1.03);
-}
-.about-signature {
-  font-family: var(--serif);
-  font-size: 1.8rem;
-  color: var(--gold);
-  margin-top: 2.5rem;
-  font-style: italic;
-}
-
-/* ── CTA ── */
-#cta { padding: 10rem 0; text-align: center; position: relative; overflow: hidden; }
-.cta-glow {
-  position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(201,169,110,0.07) 0%, transparent 65%);
-}
-.cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
-.cta-eyebrow { margin-bottom: 2.2rem; }
-.cta-headline {
-  font-family: var(--serif); font-size: clamp(2.4rem, 4.5vw, 3.6rem);
-  font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.8rem;
-}
-.cta-headline em { font-style: italic; color: var(--gold); }
-.cta-sub {
-  font-size: 1.05rem; color: var(--text-secondary);
-  line-height: 1.8; margin: 0 auto 3rem; max-width: 480px;
-}
-.cta-actions { display: flex; justify-content: center; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
-.cta-meta {
-  margin-top: 2rem; font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.02em;
-  display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
-}
-.cta-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-dim); flex-shrink: 0; }
-
-/* ── FOOTER ── */
-footer {
-  border-top: 0.5px solid var(--border);
-  padding: 3rem 0;
-}
-.footer-inner {
-  display: flex; justify-content: space-between;
-  align-items: center; flex-wrap: wrap; gap: 1.5rem;
-}
-.footer-logo {
-  font-family: var(--serif); font-size: 1.1rem;
-  color: var(--gold); text-decoration: none;
-}
-.footer-links { display: flex; gap: 2rem; }
-.footer-links a {
-  font-size: 0.78rem; color: var(--text-dim); text-decoration: none;
-  letter-spacing: 0.04em; transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--text-secondary); }
-.footer-copy { font-size: 0.72rem; color: var(--text-dim); }
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.fu { animation: fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) both; }
-.d1 { animation-delay: 0.08s; }
-.d2 { animation-delay: 0.18s; }
-.d3 { animation-delay: 0.3s; }
-.d4 { animation-delay: 0.44s; }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 920px) {
-  .hero-inner, .vision-grid, .bi-inner, .status-grid,
-  .diff-grid, .industry-panel.active, .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .contra-grid, .fw-grid, .rs-grid, .case-studies { grid-template-columns: 1fr 1fr; }
-  .tk-grid { grid-template-columns: repeat(2, 1fr); }
-  .insights-grid { grid-template-columns: 1fr; }
-  .problem-cards { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
-  .about-image-wrapper { max-width: 450px; margin: 0 auto; }
-  section { padding: 5.5rem 0; }
-  .wrap, .wrap-narrow { padding: 0 1.5rem; }
-}
-@media (max-width: 600px) {
-  .contra-grid, .fw-grid, .rs-grid, .case-studies,
-  .problem-cards, .tk-grid { grid-template-columns: 1fr; }
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 1.85rem; }
-  .diff-grid { grid-template-columns: 1fr; }
-  .trust-items { gap: 1rem; }
-  .trust-sep { display: none; }
-  .cta-meta { flex-direction: column; gap: 0.5rem; }
-  .cta-meta-dot { display: none; }
+/* ── RESPONSIVE COMPRESSION ── */
+@media (max-width: 768px) {
+  section { padding: 4.5rem 0; }
+  #hero { min-height: 85vh; padding-top: 6rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-image { max-width: 350px; margin: 0 auto 2rem; }
+  .punchy-statement { margin-bottom: 3rem; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .btn { width: 100%; }
+  .notif-badge { width: 100%; justify-content: center; padding: 1rem; }
+  .cta-meta { flex-direction: column; gap: 0.8rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
+<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Pritam Chowdhury</a>
-  <div class="nav-links">
-    <a href="#problem" class="nav-link">The Gap</a>
-    <a href="#framework" class="nav-link">Framework</a>
-    <a href="#about" class="nav-link">About</a>
-    <a href="#result-state" class="nav-link">Results</a>
-  </div>
+  <a href="#" class="nav-logo">Pritam</a>
   <a href="#cta" class="nav-cta">Book a Call</a>
 </nav>
 
-<!-- ═══ HERO ═══ -->
+<!-- 1. HERO -->
 <section id="hero">
   <div class="hero-glow"></div>
-  <div class="wrap">
-    <div class="hero-inner">
-
-      <div>
-        <div class="hero-kicker fu">
-          <span class="hero-kicker-dot"></span>
-          Local Market Dominance
-        </div>
-        <h1 class="fu d1">
-          The businesses that dominate locally aren't always the best.<br>They're the ones <em>seen first and trusted fastest.</em>
-        </h1>
-        <p class="hero-sub fu d2">
-          I help premium local businesses build customer acquisition systems that increase visibility, generate consistent leads, and turn attention into booked clients.
-        </p>
-        <div class="hero-actions fu d3">
-          <a href="#cta" class="btn btn-gold">
-            Book a Strategy Call
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="#framework" class="btn btn-outline">See how the system works</a>
-        </div>
-      </div>
-
-      <div class="fu d2">
-        <div class="hero-panel">
-          <div class="panel-header">
-            <span class="panel-dot"></span>
-            <span class="panel-title">System Impact Metrics</span>
-          </div>
-          <div class="panel-body">
-            <div class="panel-metric">
-              <span class="pm-label">Average Increase in Client Inquiries</span>
-              <div>
-                <span class="pm-val">2.8×</span>
-                <span class="pm-dir">↑ via positioning update</span>
-              </div>
-            </div>
-            <div class="panel-metric">
-              <span class="pm-label">Lead-to-Booking Conversion Rate</span>
-              <div>
-                <span class="pm-val">+41%</span>
-                <span class="pm-dir">↑ with automated nurture</span>
-              </div>
-            </div>
-            <div class="panel-metric">
-              <span class="pm-label">Time-to-First Response</span>
-              <div>
-                <span class="pm-val">&lt;2 min</span>
-                <span class="pm-dir">↑ fully automated</span>
-              </div>
-            </div>
-          </div>
-          <div class="panel-quote">
-            "Visibility without conversion infrastructure is just expensive attention. We build the engine that captures it."
-          </div>
-        </div>
-      </div>
-
+  <div class="wrap hero-content">
+    <span class="label">Local Market Dominance</span>
+    <h1>Be seen first.<br>Trusted fastest.<br><em>Chosen constantly.</em></h1>
+    <p class="body-large">I build premium customer acquisition systems for local businesses ready to stop relying on referrals and start scaling predictably.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn btn-gold">Book a Strategy Call</a>
+      <a href="#system" class="btn btn-outline">See The Engine</a>
     </div>
   </div>
 </section>
 
-<!-- ═══ TRUST BAR ═══ -->
-<div id="trust">
-  <div class="wrap">
-    <div class="trust-inner">
-      <span class="trust-label">The Arsenal</span>
-      <div class="trust-sep"></div>
-      <div class="trust-items">
-        <span class="trust-item"><span class="trust-dot"></span>Premium Positioning</span>
-        <span class="trust-item"><span class="trust-dot"></span>Google & Meta Visibility</span>
-        <span class="trust-item"><span class="trust-dot"></span>Conversion Architecture</span>
-        <span class="trust-item"><span class="trust-dot"></span>Lead Nurture Automation</span>
-        <span class="trust-item"><span class="trust-dot"></span>Sales Psychology</span>
-        <span class="trust-item"><span class="trust-dot"></span>Predictable Scale</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ VISION — IMAGINE THIS ═══ -->
-<section id="vision">
-  <div class="wrap">
-    <div class="label-row">Imagine This</div>
-    <h2 style="text-align:center;max-width:680px;margin:0 auto 0.8rem;">What your business looks like<br>when you <em>stop relying on referrals</em></h2>
-    <p class="body center" style="max-width:520px;margin:0.8rem auto 0;">Not a dream. A predictable operating state that businesses reach when they stop chasing customers and start capturing them.</p>
-    <div class="vision-grid">
-      <div class="vision-items">
-        <div class="vision-item">
-          <div class="vi-icon">🔍</div>
-          <div class="vi-text">
-            <strong>You appear first when high-intent buyers search</strong>
-            <span>You capture the people actively looking for exactly what you offer, right when they're ready to buy.</span>
-          </div>
-        </div>
-        <div class="vision-item">
-          <div class="vi-icon">📞</div>
-          <div class="vi-text">
-            <strong>Inquiries are handled instantly, automatically</strong>
-            <span>Your system replies to new leads within 2 minutes—qualifying them before they ever reach out to a competitor.</span>
-          </div>
-        </div>
-        <div class="vision-item">
-          <div class="vi-icon">📅</div>
-          <div class="vi-text">
-            <strong>Your calendar fills predictably</strong>
-            <span>Not in bursts when you run promotions, but consistently week over week because the acquisition engine never sleeps.</span>
-          </div>
-        </div>
-        <div class="vision-item">
-          <div class="vi-icon">💎</div>
-          <div class="vi-text">
-            <strong>Customers arrive already trusting your expertise</strong>
-            <span>Your positioning communicates premium value before they ever speak to you. You stop competing on price entirely.</span>
-          </div>
-        </div>
-      </div>
-      <div class="vision-right">
-        <p class="vision-quote">
-          "Great businesses shouldn't have to fight for attention.<br><em>They just need a system to capture it.</em>"
-        </p>
-        <div class="gold-rule"></div>
-        <p class="body" style="margin-bottom:1.5rem;">The businesses that struggle aren't bad at what they do. They simply rely on hope as a marketing strategy.</p>
-        <p class="body">Hope that word-of-mouth continues. Hope that an Instagram post goes viral. Hope that local traffic is enough.</p>
-        <div class="vision-attribution" style="margin-top:2.5rem;">Pritam Chowdhury · Customer Acquisition Strategist</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ PROBLEM ═══ -->
+<!-- 2. THE REAL PROBLEM -->
 <section id="problem">
   <div class="wrap">
-    <div class="problem-header">
-      <span class="label">The Gap</span>
-      <h2>Why great local businesses<br><em>stay invisible</em></h2>
-      <p class="body">It's not because you aren't working hard enough. It's because effort doesn't scale. Here is where the growth bottleneck actually is.</p>
+    <div class="punchy-statement">
+      <h2>Referrals are great.<br><em>Until they suddenly stop.</em></h2>
+      <p class="body-large">You shouldn't have to hope your phone rings today. If you can't control how customers find you, you don't have a business—you have a risk.</p>
     </div>
-    <div class="problem-cards">
+    <div class="problem-grid">
       <div class="prob-card">
-        <div class="prob-num">01</div>
-        <div class="prob-title">The Referral Trap</div>
-        <p class="prob-text">Word-of-mouth is fantastic, but it's entirely out of your control. When referrals dry up for a week, your calendar goes empty and you have no lever to pull to fix it.</p>
-        <div class="prob-impact">The Result: Unpredictable feast-or-famine cycles</div>
+        <h3>The Invisible Trap</h3>
+        <p class="body-text">Being great at what you do doesn't matter if your competitors are found first on Google and Meta. Attention comes before trust.</p>
       </div>
       <div class="prob-card">
-        <div class="prob-num">02</div>
-        <div class="prob-title">The Positioning Gap</div>
-        <p class="prob-text">When your messaging looks identical to your competitors, potential clients can only use one metric to decide who to hire: the lowest price.</p>
-        <div class="prob-impact">The Result: You attract bargain-hunters, not premium clients</div>
+        <h3>The Positioning Gap</h3>
+        <p class="body-text">If your messaging looks exactly like everyone else's, customers will only judge you on one metric: who has the lowest price.</p>
       </div>
       <div class="prob-card">
-        <div class="prob-num">03</div>
-        <div class="prob-title">The "Boost Post" Illusion</div>
-        <p class="prob-text">Throwing money at social media without a conversion system just buys likes and vanity metrics. It generates attention, but it doesn't generate revenue.</p>
-        <div class="prob-impact">The Result: A marketing budget that feels like an expense, not an investment</div>
-      </div>
-      <div class="prob-card">
-        <div class="prob-num">04</div>
-        <div class="prob-title">The Follow-up Failure</div>
-        <p class="prob-text">When you finally get an inquiry, you're too busy serving a client to answer immediately. By the time you call them back an hour later, they've booked someone else.</p>
-        <div class="prob-impact">The Result: You leak the leads you actually worked hard to get</div>
-      </div>
-      <div class="prob-card">
-        <div class="prob-num">05</div>
-        <div class="prob-title">The Brochure Website</div>
-        <p class="prob-text">Your website is beautiful, but it acts like a digital business card instead of a digital salesperson. It answers the "who we are" but fails to drive the "book now."</p>
-        <div class="prob-impact">The Result: High traffic, zero inquiries</div>
-      </div>
-      <div class="prob-card">
-        <div class="prob-num">06</div>
-        <div class="prob-title">Flying Blind</div>
-        <p class="prob-text">You have no idea exactly where your best customers are coming from. Without knowing what works, you can't double down on it to scale.</p>
-        <div class="prob-impact">The Result: Growth hits a hard ceiling</div>
+        <h3>The Speed Leak</h3>
+        <p class="body-text">You miss leads because you are busy working. By the time you call back an hour later, they've already booked someone else.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ BIG INSIGHT ═══ -->
-<div class="big-insight">
+<!-- PROOF INTERRUPTION 1 -->
+<div class="notif-strip">
   <div class="wrap">
-    <div class="bi-inner">
-      <div>
-        <span class="label">The Strategic Shift</span>
-        <p class="bi-statement">
-          Most local businesses don't need more effort.<br>They need a <em>system</em> that consistently brings customers in.
-        </p>
-      </div>
-      <div class="bi-right">
-        <div class="bi-point">
-          <span class="bi-arrow">→</span>
-          <p class="bi-text"><strong>Visibility is step one, not the finish line.</strong> Getting seen is easy. Turning that attention into a paying customer requires infrastructure.</p>
-        </div>
-        <div class="bi-point">
-          <span class="bi-arrow">→</span>
-          <p class="bi-text"><strong>Lead quality is determined by positioning.</strong> You don't attract premium clients by accident. You attract them by communicating premium value.</p>
-        </div>
-        <div class="bi-point">
-          <span class="bi-arrow">→</span>
-          <p class="bi-text"><strong>Speed beats polish.</strong> The business that follows up with an inquiry in 2 minutes will steal the client from the "better" business that takes 2 hours.</p>
-        </div>
-        <div class="bi-point">
-          <span class="bi-arrow">→</span>
-          <p class="bi-text"><strong>Growth should feel controlled.</strong> When your acquisition is systematized, getting more customers is as simple as turning a dial—not stressing over where the next booking will come from.</p>
-        </div>
-      </div>
+    <div class="notif-badge">
+      <div class="notif-pulse"></div>
+      <div class="notif-text">23 Qualified Inquiries Generated</div>
+      <div class="notif-time">Last 7 Days</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ STATUS ═══ -->
-<section id="status">
+<!-- 3. DESIRED OUTCOME -->
+<section id="outcome">
   <div class="wrap">
-    <div class="status-grid">
-      <div class="status-left">
-        <span class="label">Premium Positioning</span>
-        <h2>The local businesses that dominate their category share one thing.<br><em>They own the premium position.</em></h2>
-        <p class="body">Not the largest budget. Not the most reviews. The clearest, most credible positioning—which makes every new customer easier to acquire.</p>
-        <ul class="status-points">
-          <li>Clients refer others because they associate with the premium brand, not just the service</li>
-          <li>Premium positioning reduces negotiation—self-selected buyers come pre-convinced</li>
-          <li>Category leadership compounds: top-of-mind awareness leads to lower acquisition costs over time</li>
-          <li>Competing on value instead of price protects your margins permanently</li>
-        </ul>
+    <span class="label">The Future State</span>
+    <h2>What happens when the<br><em>infrastructure is right</em></h2>
+    <p class="body-large" style="max-width:600px; margin:0 auto;">When you replace scattered marketing with a single acquisition engine, growth stops feeling like a guessing game.</p>
+    
+    <div class="outcome-grid">
+      <div class="outcome-item">
+        <div class="outcome-icon">✓</div>
+        <div class="outcome-text">
+          <strong>Predictable Pipeline</strong>
+          <p class="body-text">Your calendar fills consistently, week over week, without relying on unpredictable word-of-mouth.</p>
+        </div>
       </div>
-      <div class="status-right">
-        <div class="status-box-label">Who this system is built for</div>
-        <div class="who-block">
-          <div class="who-title">Clinics & Health Professionals</div>
-          <div class="who-text">Dentists, physios, and specialists who want high-value patients, not just routine checkups, and need a reliable flow of appointments.</div>
+      <div class="outcome-item">
+        <div class="outcome-icon">✓</div>
+        <div class="outcome-text">
+          <strong>Premium Clients Only</strong>
+          <p class="body-text">Price-shoppers disappear. You attract clients pre-sold on your value because your positioning demands it.</p>
         </div>
-        <div class="who-block">
-          <div class="who-title">Beauty & Wellness Studios</div>
-          <div class="who-text">Salons and MedSpas looking to escape the walk-in trap and build a consistent pipeline of high-ticket repeat clientele.</div>
-        </div>
-        <div class="who-block">
-          <div class="who-title">Premium Service Businesses</div>
-          <div class="who-text">Photographers, contractors, and agencies who do exceptional work but struggle to communicate their value to capture premium leads.</div>
-        </div>
-        <div class="who-block">
-          <div class="who-title">Ambitious Operators</div>
-          <div class="who-text">Owners who understand that growth shouldn't rely on their personal effort, and are ready to invest in a machine that works for them.</div>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-icon">✓</div>
+        <div class="outcome-text">
+          <strong>Instant Nurture</strong>
+          <p class="body-text">Inquiries are handled and qualified within 2 minutes automatically, protecting your time and closing the deal.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CONTRARIAN ═══ -->
-<section id="contrarian">
+<!-- PROOF INTERRUPTION 2 -->
+<div class="testimonial-strip">
   <div class="wrap">
-    <div class="contra-header">
-      <span class="label" style="display:inline-block;">Counterintuitive Truths</span>
-      <h2>What the data shows — and conventional advice gets wrong</h2>
-    </div>
-    <div class="contra-grid">
-      <div class="contra-card">
-        <div class="contra-num">01</div>
-        <div class="contra-title">Being the "best" doesn't guarantee growth</div>
-        <p class="contra-text">The market doesn't pay you for being the best. The market pays you for being the most visible and the most trusted. Attention comes before quality can be proven.</p>
-      </div>
-      <div class="contra-card">
-        <div class="contra-num">02</div>
-        <div class="contra-title">Word-of-mouth is a bonus, not a strategy</div>
-        <p class="contra-text">If you can't control it, it's not a system. Referrals should be the icing on the cake, but your baseline revenue must come from predictable, systematized acquisition.</p>
-      </div>
-      <div class="contra-card">
-        <div class="contra-num">03</div>
-        <div class="contra-title">"Boosting posts" is a tax on business owners</div>
-        <p class="contra-text">Social media platforms make it incredibly easy to spend money for "awareness." But awareness without a conversion funnel is just donating money to Mark Zuckerberg.</p>
-      </div>
-      <div class="contra-card">
-        <div class="contra-num">04</div>
-        <div class="contra-title">Your website should not be a brochure</div>
-        <p class="contra-text">If your website just lists your services and says "Contact Us," it's failing you. A proper landing page is engineered to do one thing: convert a visitor into a booked appointment.</p>
-      </div>
-      <div class="contra-card">
-        <div class="contra-num">05</div>
-        <div class="contra-title">Speed beats the perfect script</div>
-        <p class="contra-text">Calling a lead within 5 minutes with a mediocre pitch will win the client 9 times out of 10 over calling them 2 hours later with the perfect pitch. Automation solves the speed problem.</p>
-      </div>
-      <div class="contra-card">
-        <div class="contra-num">06</div>
-        <div class="contra-title">Premium pricing reduces friction</div>
-        <p class="contra-text">When you position yourself as a premium service, you attract clients who value time over money. They don't haggle, they show up, and they respect your expertise.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FRAMEWORK ═══ -->
-<section id="framework">
-  <div class="wrap">
-    <div class="fw-header">
-      <div class="fw-badge">The Acquisition Engine™</div>
-      <h2>Six layers. One connected system. Predictable growth.</h2>
-      <p class="body">This is the exact mechanism we use to turn invisible local businesses into the obvious, dominant choice in their market.</p>
-    </div>
-    <div class="fw-grid">
-      <div class="fw-card">
-        <div class="fw-card-glow"></div>
-        <div class="fw-num">01</div>
-        <div class="fw-title">Premium Positioning</div>
-        <div class="fw-outcome">Make price irrelevant.</div>
-        <p class="fw-text">We rebuild your messaging to clearly communicate your unique value. We elevate your brand so you attract high-quality clients who are ready to invest, not haggle.</p>
-        <span class="fw-tag">Positioning · Offer Design</span>
-      </div>
-      <div class="fw-card">
-        <div class="fw-card-glow"></div>
-        <div class="fw-num">02</div>
-        <div class="fw-title">Visibility & Traffic</div>
-        <div class="fw-outcome">Get found by people actively looking.</div>
-        <p class="fw-text">We deploy precision Google and Meta campaigns to capture high-intent local searches. No more waiting for referrals—we put you directly in front of active buyers.</p>
-        <span class="fw-tag">Google Ads · Meta Ads</span>
-      </div>
-      <div class="fw-card">
-        <div class="fw-card-glow"></div>
-        <div class="fw-num">03</div>
-        <div class="fw-title">Conversion Architecture</div>
-        <div class="fw-outcome">Turn clicks into inquiries.</div>
-        <p class="fw-text">We don't send traffic to a generic homepage. We build high-speed, psychologically optimized landing pages designed with one strict goal: getting the visitor to book.</p>
-        <span class="fw-tag">Landing Pages · Psychology</span>
-      </div>
-      <div class="fw-card">
-        <div class="fw-card-glow"></div>
-        <div class="fw-num">04</div>
-        <div class="fw-title">Automated Nurture</div>
-        <div class="fw-outcome">Never lose a lead to slow follow-up.</div>
-        <p class="fw-text">When a lead comes in, our systems contact them within 2 minutes via SMS/Email. We automate the qualification and booking process while you focus on the work.</p>
-        <span class="fw-tag">Automation · CRM</span>
-      </div>
-      <div class="fw-card">
-        <div class="fw-card-glow"></div>
-        <div class="fw-num">05</div>
-        <div class="fw-title">Data Measurement</div>
-        <div class="fw-outcome">Know exactly what is working.</div>
-        <p class="fw-text">We install advanced tracking so you aren't flying blind. You will know exactly which campaign, ad, and keyword brought in the paying customer.</p>
-        <span class="fw-tag">Tracking · Analytics</span>
-      </div>
-      <div class="fw-card">
-        <div class="fw-card-glow"></div>
-        <div class="fw-num">06</div>
-        <div class="fw-title">Predictable Scale</div>
-        <div class="fw-outcome">Turn the dial up with confidence.</div>
-        <p class="fw-text">Once the system is generating profitable customers consistently, we systematically scale the input. Growth transforms from a stressful gamble into a controlled process.</p>
-        <span class="fw-tag">Optimization · Scale</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ RESULT STATE ═══ -->
-<section id="result-state">
-  <div class="wrap">
-    <div class="rs-header">
-      <div class="label-row">When the System Works</div>
-      <h2>What changes when you<br><em>become the obvious choice</em></h2>
-      <p class="body">Not theory. A consistent pattern that emerges when a business transitions from "hoping for customers" to running an acquisition system.</p>
-    </div>
-    <div class="rs-grid">
-      <div class="rs-card">
-        <div class="rs-icon">📈</div>
-        <div class="rs-title">Marketing feels predictable, not stressful</div>
-        <p class="rs-text">When you know that 100 website visits equals 10 leads, and 10 leads equals 4 booked clients, you stop worrying about where the next client is coming from.</p>
-      </div>
-      <div class="rs-card">
-        <div class="rs-icon">🎯</div>
-        <div class="rs-title">Inquiries feel higher quality</div>
-        <p class="rs-text">Because your positioning filters out the price-shoppers before they even click. You spend your time talking to people who actually respect your value.</p>
-      </div>
-      <div class="rs-card">
-        <div class="rs-icon">⚡</div>
-        <div class="rs-title">Your time is protected</div>
-        <p class="rs-text">You don't have to scramble to manually reply to DMs or emails. The system handles the initial contact, qualification, and scheduling for you.</p>
-      </div>
-      <div class="rs-card">
-        <div class="rs-icon">💼</div>
-        <div class="rs-title">Competitors become irrelevant</div>
-        <p class="rs-text">When you own the premium position in your local market, the cheaper options stop being a threat. You aren't competing in the same race anymore.</p>
-      </div>
-      <div class="rs-card">
-        <div class="rs-icon">📉</div>
-        <div class="rs-title">Seasonal dips disappear</div>
-        <p class="rs-text">Predictable lead flow irons out the slow months. Because the acquisition engine is always running, you maintain momentum all year round.</p>
-      </div>
-      <div class="rs-card">
-        <div class="rs-icon">🔁</div>
-        <div class="rs-title">Scaling becomes a choice</div>
-        <p class="rs-text">When your acquisition costs are validated, growing your business becomes a simple decision of how much you want to turn the dial up.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ ARCHITECTURE / INDUSTRIES ═══ -->
-<section id="industries">
-  <div class="wrap">
-    <div class="ind-header">
-      <span class="label">The Architecture of Local Dominance</span>
-      <h2>The strategy adapts.<br><em>The principles don't.</em></h2>
-      <p class="body">Whether you sell high-ticket health services or premium creative packages, the psychology of capturing local attention remains the same.</p>
-    </div>
-    <div class="industry-tabs">
-      <button class="industry-tab active" onclick="showTab('clinic',this)">Clinics & Health</button>
-      <button class="industry-tab" onclick="showTab('wellness',this)">Salons & Wellness</button>
-      <button class="industry-tab" onclick="showTab('home',this)">Premium Local Services</button>
-      <button class="industry-tab" onclick="showTab('b2b',this)">B2B & Agencies</button>
-    </div>
-
-    <!-- CLINICS -->
-    <div id="tab-clinic" class="industry-panel active">
-      <div>
-        <span class="ind-emoji">🦷</span>
-        <h3>Clinics & Health Professionals</h3>
-        <p class="body">Patients searching for implants, aligners, or specialist care are high-intent. If you aren't visible the moment they search, your competitor gets the chair.</p>
-        <ul class="ind-pain-list">
-          <li>We build procedure-specific funnels to capture exact search intent.</li>
-          <li>Establish premium medical authority before they walk in.</li>
-          <li>Automate booking confirmations to kill the no-show rate.</li>
-        </ul>
-      </div>
-      <div class="ind-solution">
-        <span class="label">The Focus</span>
-        <div class="sol-item">
-          <div class="sol-num">1</div>
-          <div class="sol-body">
-            <strong>Capture Active Demand</strong>
-            <span>Dominate local Google search for high-value treatments.</span>
-          </div>
-        </div>
-        <div class="sol-item">
-          <div class="sol-num">2</div>
-          <div class="sol-body">
-            <strong>Frictionless Booking</strong>
-            <span>Remove the hurdles between seeing the ad and sitting in the chair.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- WELLNESS -->
-    <div id="tab-wellness" class="industry-panel">
-      <div>
-        <span class="ind-emoji">✂️</span>
-        <h3>Salons & Wellness Studios</h3>
-        <p class="body">Beautiful Instagram feeds are great, but they don't automatically generate appointments. You need a system that pulls scrollers off social media and into your booking system.</p>
-        <ul class="ind-pain-list">
-          <li>We turn social engagement into actual leads.</li>
-          <li>Build retargeting campaigns to capture high-intent local searches.</li>
-          <li>Implement automated sequences to turn one-time visits into lifetime retainers.</li>
-        </ul>
-      </div>
-      <div class="ind-solution">
-        <span class="label">The Focus</span>
-        <div class="sol-item">
-          <div class="sol-num">1</div>
-          <div class="sol-body">
-            <strong>Convert Awareness to Action</strong>
-            <span>Funnel social media attention directly into a booking page.</span>
-          </div>
-        </div>
-        <div class="sol-item">
-          <div class="sol-num">2</div>
-          <div class="sol-body">
-            <strong>Retention Automation</strong>
-            <span>Automate the post-visit outreach to secure the repeat booking.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- HOME SERVICES -->
-    <div id="tab-home" class="industry-panel">
-      <div>
-        <span class="ind-emoji">🏡</span>
-        <h3>Premium Local Services</h3>
-        <p class="body">Whether you are a premium photographer, contractor, or event planner, competing on portfolio alone leads to price-shopping. Positioning is your shield.</p>
-        <ul class="ind-pain-list">
-          <li>We build landing pages that pre-qualify leads on budget and value.</li>
-          <li>Stop wasting time on ghosted DMs and unqualified calls.</li>
-          <li>Automate the inquiry process to filter for serious buyers instantly.</li>
-        </ul>
-      </div>
-      <div class="ind-solution">
-        <span class="label">The Focus</span>
-        <div class="sol-item">
-          <div class="sol-num">1</div>
-          <div class="sol-body">
-            <strong>Pre-Qualification</strong>
-            <span>Use your conversion architecture to repel bad fits and attract great ones.</span>
-          </div>
-        </div>
-        <div class="sol-item">
-          <div class="sol-num">2</div>
-          <div class="sol-body">
-            <strong>Speed to Lead</strong>
-            <span>Automate follow-ups so you lock down the client while you're still on the job site.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- B2B -->
-    <div id="tab-b2b" class="industry-panel">
-      <div>
-        <span class="ind-emoji">📡</span>
-        <h3>B2B & Local Agencies</h3>
-        <p class="body">You know how to get results for your clients, but your own pipeline is highly dependent on unpredictable referrals. It's time to build your own inbound engine.</p>
-        <ul class="ind-pain-list">
-          <li>Transition from unpredictable outbound/referrals to consistent inbound.</li>
-          <li>Niche positioning that makes you the unmistakable authority.</li>
-          <li>High-converting assets that do the selling before the Zoom call.</li>
-        </ul>
-      </div>
-      <div class="ind-solution">
-        <span class="label">The Focus</span>
-        <div class="sol-item">
-          <div class="sol-num">1</div>
-          <div class="sol-body">
-            <strong>Authority Architecture</strong>
-            <span>Build a digital presence that proves competence immediately.</span>
-          </div>
-        </div>
-        <div class="sol-item">
-          <div class="sol-num">2</div>
-          <div class="sol-body">
-            <strong>Inbound Deal Flow</strong>
-            <span>Generate consistent, high-value conversations on autopilot.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══ DIFFERENTIATION ═══ -->
-<section id="differentiation">
-  <div class="wrap">
-    <div class="diff-header">
-      <span class="label">A Different Approach</span>
-      <h2>What separates an acquisition strategist<br>from a <em>generic ad agency</em></h2>
-      <p class="body">The difference isn't just what's done — it's how the problem of growth is understood from the beginning.</p>
-    </div>
-    <div class="diff-grid">
-      <div class="diff-col diff-generic">
-        <div class="diff-col-head"><span>✕</span> Generic Ad Agency</div>
-        <div class="diff-row"><span class="diff-sym">—</span>Runs ads to an unoptimized homepage</div>
-        <div class="diff-row"><span class="diff-sym">—</span>Reports "likes" and "clicks" as success metrics</div>
-        <div class="diff-row"><span class="diff-sym">—</span>Generates leads but doesn't care if they close</div>
-        <div class="diff-row"><span class="diff-sym">—</span>No visibility into what happens after the click</div>
-        <div class="diff-row"><span class="diff-sym">—</span>Blames the algorithm when things don't work</div>
-        <div class="diff-row"><span class="diff-sym">—</span>Recommends budget increases to solve problems</div>
-        <div class="diff-row"><span class="diff-sym">—</span>Provides no systems, CRM, or follow-up automation</div>
-        <div class="diff-row"><span class="diff-sym">—</span>Views marketing as an isolated expense</div>
-      </div>
-      <div class="diff-col diff-mine">
-        <div class="diff-col-head"><span>✓</span> Acquisition Infrastructure Approach</div>
-        <div class="diff-row"><span class="diff-sym">→</span>Builds the conversion foundation before spending money</div>
-        <div class="diff-row"><span class="diff-sym">→</span>Tracks the full journey — from click to booked revenue</div>
-        <div class="diff-row"><span class="diff-sym">→</span>Optimises for actual sales, not vanity metrics</div>
-        <div class="diff-row"><span class="diff-sym">→</span>Fixes the messaging and positioning first</div>
-        <div class="diff-row"><span class="diff-sym">→</span>Installs tracking to ensure the data is accurate</div>
-        <div class="diff-row"><span class="diff-sym">→</span>Diagnoses the actual bottleneck before spending more</div>
-        <div class="diff-row"><span class="diff-sym">→</span>Builds automation that converts leads while you sleep</div>
-        <div class="diff-row"><span class="diff-sym">→</span>Views marketing as an interconnected revenue machine</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ PROCESS ═══ -->
-<section id="process">
-  <div class="wrap">
-    <div class="process-header">
-      <div class="label-row">How It Works</div>
-      <h2>From first conversation<br>to <em>running system</em></h2>
-      <p class="body">A structured engagement designed to move fast and deliver clarity.</p>
-    </div>
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="ps-num">1</div>
-        <div class="ps-content">
-          <strong>Strategy Call — 45 minutes</strong>
-          <p>A focused diagnostic of your current visibility and acquisition. We identify the highest-leverage gaps and map what a well-functioning system looks like for your business. No pitch — just clarity.</p>
-          <span class="ps-tag">→ Complimentary · No obligation</span>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="ps-num">2</div>
-        <div class="ps-content">
-          <strong>System Design & Blueprint</strong>
-          <p>We audit your positioning, current assets, and technical setup. You receive a detailed infrastructure map—what's missing, what needs to be built, and the exact sequence to dominate locally.</p>
-          <span class="ps-tag">→ Delivered within 5 business days</span>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="ps-num">3</div>
-        <div class="ps-content">
-          <strong>Infrastructure Build</strong>
-          <p>Conversion pages, tracking, campaign architecture, and automated nurture sequences are built in a defined sprint. The engine is fully assembled before any traffic is sent.</p>
-          <span class="ps-tag">→ 2–3 week sprint</span>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="ps-num">4</div>
-        <div class="ps-content">
-          <strong>Launch & Capture</strong>
-          <p>Campaigns go live. The first 30 days are about capturing active demand, validating the messaging, and ensuring the automation is turning inquiries into booked appointments flawlessly.</p>
-          <span class="ps-tag">→ Daily monitoring · Weekly reporting</span>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="ps-num">5</div>
-        <div class="ps-content">
-          <strong>Predictable Scale</strong>
-          <p>Once the system is proven to bring in profitable customers consistently, we turn the dial up. We scale the visibility against a proven engine, ensuring predictable business growth.</p>
-          <span class="ps-tag">→ Monthly strategy reviews</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ TOOLKIT ═══ -->
-<section id="toolkit">
-  <div class="wrap">
-    <div class="tk-header">
-      <span class="label">The Secret Weapon</span>
-      <h2>The technical layer that makes<br><em>local dominance possible</em></h2>
-      <p class="body">Your clients will never see these tools. They will only see a seamless, premium experience. But this is the architecture running in the background.</p>
-    </div>
-    <div class="tk-grid">
-      <div class="tk-card">
-        <div class="tk-icon">🔍</div>
-        <div class="tk-name">Google Ads</div>
-        <div class="tk-role">To capture people who are actively searching for your services right now.</div>
-      </div>
-      <div class="tk-card">
-        <div class="tk-icon">📘</div>
-        <div class="tk-name">Meta Ads</div>
-        <div class="tk-role">To build local awareness and retarget people who have shown interest.</div>
-      </div>
-      <div class="tk-card">
-        <div class="tk-icon">⚙️</div>
-        <div class="tk-name">GoHighLevel</div>
-        <div class="tk-role">To instantly follow up with leads and automate the booking process.</div>
-      </div>
-      <div class="tk-card">
-        <div class="tk-icon">📊</div>
-        <div class="tk-name">GA4 + GTM</div>
-        <div class="tk-role">To track exactly which campaigns are generating revenue, not just clicks.</div>
-      </div>
-      <div class="tk-card">
-        <div class="tk-icon">🖥️</div>
-        <div class="tk-name">Custom Pages</div>
-        <div class="tk-role">To guide visitors logically from curiosity to a confirmed appointment.</div>
-      </div>
-      <div class="tk-card">
-        <div class="tk-icon">🔥</div>
-        <div class="tk-name">Conversion Optimization</div>
-        <div class="tk-role">To continuously analyze behavior and remove friction from the buying process.</div>
-      </div>
-      <div class="tk-card">
-        <div class="tk-icon">🧠</div>
-        <div class="tk-name">Sales Psychology</div>
-        <div class="tk-role">To write copy that creates trust, urgency, and premium positioning.</div>
-      </div>
-      <div class="tk-card">
-        <div class="tk-icon">📈</div>
-        <div class="tk-name">Growth Dashboards</div>
-        <div class="tk-role">To give you total clarity on your acquisition costs and return on investment.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ INSIGHTS ═══ -->
-<div class="insights-band">
-  <div class="wrap">
-    <div style="text-align:center;max-width:500px;margin:0 auto;">
-      <div class="label-row">Point of View</div>
-      <h2>Observations on growth<br>that <em>go against the grain</em></h2>
-    </div>
-    <div class="insights-grid">
-      <div class="insight-card">
-        <p>"The best-converting landing page I've ever built had no hero image, no video, no testimonial slider. Just a headline that exactly matched what the customer was searching for, and a simple way to book."</p>
-        <cite>On Clarity Over Aesthetics</cite>
-      </div>
-      <div class="insight-card">
-        <p>"Local businesses don't fail because they lack passion. They plateau because they rely on 'hope' as a marketing strategy. Hope for referrals. Hope for walk-ins. Systems replace hope with predictability."</p>
-        <cite>On The Importance of Systems</cite>
-      </div>
-      <div class="insight-card">
-        <p>"A business that follows up with a new lead in two minutes will almost always steal the client from a 'better' competitor that takes two hours to respond. Speed is a massive competitive advantage."</p>
-        <cite>On Lead Nurture</cite>
-      </div>
-      <div class="insight-card">
-        <p>"When you position yourself as the premium option, everything gets easier. You attract clients who value time over money, you eliminate haggling, and you create room in your margins to scale."</p>
-        <cite>On Premium Positioning</cite>
-      </div>
-    </div>
+    <p class="test-quote">"We stopped worrying about where the next patient was coming from. The system just works in the background while we focus on the clinic."</p>
+    <div class="test-author">— Premium Local Business Operator</div>
   </div>
 </div>
 
-<!-- ═══ ABOUT ═══ -->
-<section id="about">
+<!-- 4. THE SYSTEM -->
+<section id="system">
+  <div class="wrap">
+    <div class="center">
+      <span class="label">The Engine</span>
+      <h2>Four Pillars of<br><em>Acquisition Systems</em></h2>
+    </div>
+    
+    <div class="sys-grid">
+      <div class="sys-card">
+        <div class="sys-num">1</div>
+        <h3>Premium Positioning</h3>
+        <p class="body-text">We redesign your offer and messaging to make price irrelevant. You become the unmistakable premium choice in your local area.</p>
+      </div>
+      <div class="sys-card">
+        <div class="sys-num">2</div>
+        <h3>Precision Visibility</h3>
+        <p class="body-text">We capture active buyers exactly when they are searching for you using pinpoint Google and Meta advertising.</p>
+      </div>
+      <div class="sys-card">
+        <div class="sys-num">3</div>
+        <h3>Conversion Architecture</h3>
+        <p class="body-text">Traffic is useless if it doesn't convert. We build high-speed, psychologically optimized pages designed strictly to generate bookings.</p>
+      </div>
+      <div class="sys-card">
+        <div class="sys-num">4</div>
+        <h3>Automated Nurture</h3>
+        <p class="body-text">Never lose a lead to slow follow-up again. Systems contact, qualify, and book leads within minutes while you focus on the work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PROOF / RESULTS -->
+<section id="proof">
+  <div class="wrap">
+    <div class="center">
+      <span class="label">The Reality</span>
+      <h2>The proof is in the<br><em>profitability.</em></h2>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-val">+41%</span>
+        <span class="metric-label">Avg. Lead-to-Book Rate</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-val">2.8x</span>
+        <span class="metric-label">Increase in Inquiry Volume</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-val">&lt;2m</span>
+        <span class="metric-label">Automated Response Time</span>
+      </div>
+    </div>
+
+    <div class="industry-strip">
+      Built For: Clinics · Wellness Brands · Premium Local Services · Agencies
+    </div>
+  </div>
+</section>
+
+<!-- 6. WHY THIS WORKS (ABOUT / MECHANISM) -->
+<section id="why-it-works">
   <div class="wrap">
     <div class="about-grid">
-      <div class="about-image-col">
-        <div class="about-image-wrapper">
-          <img src="about-me.jpeg" alt="Pritam Chowdhury" class="about-img" loading="lazy">
-        </div>
-      </div>
-      <div class="about-text-col">
+      <div>
         <span class="label">The Strategist</span>
-        <h2>Hi, I'm Pritam.<br>I build <em>growth engines.</em></h2>
-        <p class="body">For years, I watched exceptional local businesses—clinics, studios, and service providers—lose market share to inferior competitors simply because they lacked the right digital infrastructure.</p>
-        <p class="body">They had the skills. They had the passion. But they relied on hope, unpredictable referrals, and scattered social media posts to scale.</p>
-        <p class="body">I built the Acquisition Engine™ to solve this exact problem. My philosophy is straightforward: stop competing on price, own the premium position in your market, and build a measurable, automated system that turns local attention into booked appointments.</p>
-        <p class="body">I don't do marketing "hacks." I use deep sales psychology, precise tracking, and scalable infrastructure to make your revenue predictable.</p>
-        <div class="about-signature">Pritam Chowdhury</div>
+        <h2>Agencies sell ads.<br><em>I build infrastructure.</em></h2>
+        <p class="body-text">Most great local businesses don't fail because they lack passion or effort. They plateau because their growth relies entirely on <em>manual effort.</em></p>
+        <p class="body-text" style="margin-top: 1rem;">If your calendar depends on you posting on social media, pitching, or praying for referrals, you don't have an acquisition system—you have a second full-time job.</p>
+        <ul class="contrast-list">
+          <li>I fix your conversion leaks before spending a dime of your budget.</li>
+          <li>I install deep tracking so we scale based on data, not feelings.</li>
+          <li>I automate the follow-up so no lead is ever wasted.</li>
+        </ul>
+        <p class="body-text">I'm Pritam Chowdhury. I build the systems that let you focus entirely on your craft, while the engine runs your growth.</p>
+        <div class="sig">Pritam</div>
+      </div>
+      <div class="about-image">
+        <img src="about-me.jpeg" alt="Pritam Chowdhury" loading="lazy">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CTA ═══ -->
+<!-- 7. CTA -->
 <section id="cta">
-  <div class="cta-glow"></div>
   <div class="wrap">
-    <div class="cta-inner">
-      <div class="cta-eyebrow">
-        <div class="label-row">Strategy Call</div>
-      </div>
-      <h2 class="cta-headline">
-        Book 45 minutes.<br>Walk away knowing<br><em>exactly how to grow.</em>
-      </h2>
-      <p class="cta-sub">
-        Not a sales pitch. A focused diagnostic of your current visibility and a clear blueprint of how to become the obvious choice in your market. No obligation.
-      </p>
-      <div class="cta-actions">
-        <a href="https://wa.me/917001225654" target="_blank" class="btn btn-gold">
-          Book via WhatsApp
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="mailto:hello@heypritam.in" class="btn btn-outline">Send an Email</a>
-      </div>
+    <div class="cta-box">
+      <span class="label">Take Control</span>
+      <h2>Book 45 minutes.<br>Walk away with <em>clarity.</em></h2>
+      <p class="body-large" style="margin-bottom: 2.5rem;">A focused diagnostic of your current visibility and a clear blueprint of how to build your acquisition engine. No pitch. No templates.</p>
+      <a href="https://wa.me/917001225654" target="_blank" class="btn btn-gold">Book Strategy Call via WhatsApp</a>
+      
       <div class="cta-meta">
-        <span>India-based businesses only</span>
-        <span class="cta-meta-dot"></span>
-        <span>Limited to 3 new clients per month</span>
-        <span class="cta-meta-dot"></span>
-        <span>Response within 24 hours</span>
+        <span>Limited Client Capacity</span>
+        <span class="cta-meta-dot">·</span>
+        <span>By Application Only</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="wrap">
-    <div class="footer-inner">
-      <a href="#" class="footer-logo">Pritam Chowdhury</a>
-      <div class="footer-links">
-        <a href="https://instagram.com/pritamgrows" target="_blank">Instagram</a>
-        <a href="https://linkedin.com/in/mepritamchowdhury" target="_blank">LinkedIn</a>
-        <a href="https://meteormedia.in" target="_blank">Meteor Media</a>
-        <a href="mailto:hello@heypritam.in">Email</a>
-      </div>
-      <span class="footer-copy">© 2026 heypritam.in</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-function showTab(id, btn) {
-  document.querySelectorAll('.industry-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.industry-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  btn.classList.add('active');
-}
-</script>
 </body>
 </html>
