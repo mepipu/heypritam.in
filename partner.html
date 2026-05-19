@@ -121,6 +121,18 @@ nav {
   font-family: var(--serif); font-size: 1.25rem; font-weight: 400; 
   letter-spacing: 0.02em; color: var(--text-dark); text-decoration: none; 
 }
+.nav-back {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: color .3s ease;
+}
+.nav-back:hover {
+  color: var(--text-dark);
+}
 
 /* ── 1. HERO ── */
 #hero {
@@ -227,7 +239,8 @@ nav {
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">Pritam</a>
+  <a href="/" class="nav-logo">Pritam</a>
+  <a href="/" class="nav-back">Main Website</a>
 </nav>
 
 <section id="hero">
