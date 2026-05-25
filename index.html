@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-KQQ3G4LB');</script>
-<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pritam Chowdhury — Customer Acquisition Strategist</title>
@@ -76,11 +74,11 @@ section { padding: 10rem 0; }
 /* ── TYPOGRAPHY ── */
 .label {
   font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 1.8rem;
+  text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 1.5rem;
 }
 h1 {
   font-family: var(--serif); font-size: clamp(3.2rem, 8vw, 5.2rem);
-  line-height: 1.05; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 2rem;
+  line-height: 1.05; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 1rem;
   color: var(--text-dark);
 }
 h1 em { font-style: italic; color: var(--accent); }
@@ -98,7 +96,7 @@ h3 {
   color: var(--text-dark);
 }
 
-.body-large { font-size: clamp(1.1rem, 3vw, 1.25rem); color: var(--text-muted); line-height: 1.7; }
+.body-large { font-size: clamp(1.1rem, 3vw, 1.25rem); color: var(--text-muted); line-height: 1.6; }
 .body-text { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
 
 /* ── UI ELEMENTS: REFINED BUTTONS ── */
@@ -106,7 +104,7 @@ h3 {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
   font-family: var(--sans); font-size: 0.8rem; font-weight: 600;
   letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
-  padding: 1.1rem 2.6rem; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: none; cursor: pointer;
+  padding: 1rem 2.4rem; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: none; cursor: pointer;
   border-radius: 100px; 
 }
 .btn-gold { 
@@ -148,9 +146,51 @@ nav {
 }
 .nav-cta:hover { border-color: var(--text-dark); background: rgba(22, 22, 21, 0.02); }
 
+/* ── ANIMATIONS: LOAD & SCROLL REVEAL ── */
+
+/* 1. On-Load Fade (For Hero Section) */
+.load-fade {
+  opacity: 0;
+  animation: loadFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+@keyframes loadFadeUp {
+  0% { opacity: 0; transform: translateY(25px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. Scroll Reveal (For below the fold) */
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Shared Stagger Delays */
+.delay-1 { animation-delay: 0.1s; transition-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; transition-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; transition-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; transition-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; transition-delay: 0.5s; }
+
+/* 3. Hover Elevations */
+.prob-card, .sys-card, .metric-card {
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.prob-card:hover, .sys-card:hover, .metric-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(22, 22, 21, 0.15);
+  box-shadow: 0 20px 40px rgba(22, 22, 21, 0.05);
+}
+
 /* ── 1. HERO ── */
 #hero {
-  min-height: 100vh; display: flex; align-items: center; position: relative; padding-top: 6rem;
+  min-height: 95vh; display: flex; align-items: center; position: relative; padding-top: 6rem;
   background: var(--bg-ivory);
 }
 
@@ -168,7 +208,37 @@ nav {
   display: grid; grid-template-columns: 1fr 340px; gap: 5rem; align-items: center; position: relative; z-index: 1;
 }
 .hero-content { text-align: left; }
-.hero-actions { display: flex; gap: 1rem; justify-content: flex-start; margin-top: 3.5rem; flex-wrap: wrap; }
+.hero-actions { display: flex; gap: 1rem; justify-content: flex-start; margin-top: 2rem; flex-wrap: wrap; }
+
+/* HERO STATS - Single Line Spacing */
+.hero-stats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-soft);
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.stat-val {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+.stat-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
 
 .hero-visual {
   display: flex; flex-direction: column; justify-content: center; height: 100%;
@@ -177,11 +247,11 @@ nav {
 
 .hero-image-wrapper {
   width: 100%;
-  height: 420px;
+  height: 380px;
   background: var(--bg-sand);
   border-radius: 2px;
   overflow: hidden;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero-image-wrapper img {
@@ -198,9 +268,9 @@ nav {
 
 .editorial-note strong {
   display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em;
-  color: var(--text-dark); margin-bottom: 0.8rem;
+  color: var(--text-dark); margin-bottom: 0.6rem;
 }
-.editorial-note p { font-size: 0.95rem; color: var(--text-light); line-height: 1.6; }
+.editorial-note p { font-size: 0.95rem; color: var(--text-light); line-height: 1.5; }
 
 /* ── 2. THE REAL PROBLEM ── */
 #problem { background: var(--bg-warm-gray); padding: 10rem 0; }
@@ -310,17 +380,34 @@ nav {
 
 /* ── RESPONSIVE COMPRESSION ── */
 @media (max-width: 768px) {
-  section { padding: 7rem 0; }
-  #hero { min-height: 85vh; padding-top: 8rem; }
+  section { padding: 6rem 0; }
+  #hero { min-height: auto; padding-top: 7rem; padding-bottom: 3rem; }
   .hero-layout { grid-template-columns: 1fr; gap: 3rem; }
+  
+  /* Mobile Single Line Hero Stats */
+  .hero-stats { 
+    flex-direction: row; 
+    flex-wrap: nowrap; 
+    gap: 0.5rem; 
+    justify-content: space-between; 
+    border-top: 1px solid var(--border-soft); 
+    padding-top: 1.5rem; 
+    margin-top: 2rem; 
+  }
+  .stat-val { font-size: clamp(1.1rem, 4vw, 1.4rem); }
+  .stat-label { font-size: clamp(0.45rem, 2vw, 0.6rem); letter-spacing: 0.05em; line-height: 1.4; }
+
   .hero-visual { border-left: none; border-top: 1px solid var(--border-soft); padding-left: 0; padding-top: 3rem; height: auto; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 2rem;}
   .hero-image-wrapper { height: 320px; margin-bottom: 0; }
   .about-grid { grid-template-columns: 1fr; gap: 4rem;}
   .about-image { max-width: 400px; margin: 0 auto; }
   .punchy-statement { margin-bottom: 4rem; }
   .metrics-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .hero-actions { flex-direction: column; width: 100%; }
+  
+  /* Compact buttons for mobile visibility */
+  .hero-actions { flex-direction: column; width: 100%; gap: 0.8rem; margin-top: 1.5rem; }
   .btn { width: 100%; }
+  
   .notif-badge { width: 100%; justify-content: center; padding: 1.2rem; }
   .cta-meta { flex-direction: column; gap: 1.5rem; }
   nav { padding: 1rem 1.5rem; }
@@ -329,11 +416,8 @@ nav {
 </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQQ3G4LB"
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQQ3G4LB"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
 <nav>
   <a href="#" class="nav-logo">Pritam</a>
   <a href="#cta" class="nav-cta">Book a Call</a>
@@ -343,16 +427,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-bg-grid"></div>
   <div class="wrap hero-layout">
     <div class="hero-content">
-      <span class="label">Local Market Dominance</span>
-      <h1>Customers find you,<br>trust you, and<br><em>book you first.</em></h1>
-      <p class="body-large">I build premium customer acquisition systems for businesses ready to stop relying on referrals and start scaling predictably.</p>
-      <div class="hero-actions">
+      <span class="label load-fade">Local Market Dominance</span>
+      <h1 class="load-fade delay-1">Customers find you,<br>trust you, and<br><em>book you first.</em></h1>
+      <p class="body-large load-fade delay-2">I build premium customer acquisition systems for businesses ready to stop relying on referrals and start scaling predictably.</p>
+      
+      <div class="hero-actions load-fade delay-3">
         <a href="#cta" class="btn btn-gold">Book a Strategy Call</a>
         <a href="#system" class="btn btn-outline">See The Engine</a>
       </div>
+
+      <div class="hero-stats load-fade delay-4">
+        <div class="stat-item">
+          <span class="stat-val">$17,000,000+</span>
+          <span class="stat-label">Ad Spend Managed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">200+</span>
+          <span class="stat-label">Service Businesses Helped</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">66k+</span>
+          <span class="stat-label">Phone Call Leads Generated</span>
+        </div>
+      </div>
     </div>
     
-    <div class="hero-visual">
+    <div class="hero-visual load-fade delay-5">
       <div class="hero-image-wrapper">
         <img src="hero-architecture.jpg" alt="Acquisition System Architecture" loading="lazy">
       </div>
@@ -366,20 +466,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section id="problem">
   <div class="wrap">
-    <div class="punchy-statement">
+    <div class="punchy-statement reveal">
       <h2>Referrals are great.<br><em>Until they suddenly stop.</em></h2>
       <p class="body-large">You shouldn't have to hope your phone rings today. If you can't control how customers find you, you don't have a business—you have a risk.</p>
     </div>
     <div class="problem-grid">
-      <div class="prob-card">
+      <div class="prob-card reveal delay-1">
         <h3>The Invisible Trap</h3>
         <p class="body-text">Being great at what you do doesn't matter if your competitors are found first on Google and Meta. Attention comes before trust.</p>
       </div>
-      <div class="prob-card">
+      <div class="prob-card reveal delay-2">
         <h3>The Positioning Gap</h3>
         <p class="body-text">If your messaging looks exactly like everyone else's, customers will only judge you on one metric: who has the lowest price.</p>
       </div>
-      <div class="prob-card">
+      <div class="prob-card reveal delay-3">
         <h3>The Speed Leak</h3>
         <p class="body-text">You miss leads because you are busy working. By the time you call back an hour later, they've already booked someone else.</p>
       </div>
@@ -389,7 +489,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="notif-strip">
   <div class="wrap">
-    <div class="notif-badge">
+    <div class="notif-badge reveal">
       <div class="notif-pulse"></div>
       <div class="notif-text">23 Qualified Inquiries Generated</div>
       <div class="notif-time">Last 7 Days</div>
@@ -399,26 +499,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section id="outcome">
   <div class="wrap">
-    <span class="label">The Future State</span>
-    <h2>What happens when the<br><em>infrastructure is right</em></h2>
-    <p class="body-large" style="max-width:600px; margin:0 auto;">When you replace scattered marketing with a single acquisition engine, growth stops feeling like a guessing game.</p>
+    <div class="reveal">
+      <span class="label">The Future State</span>
+      <h2>What happens when the<br><em>infrastructure is right</em></h2>
+      <p class="body-large" style="max-width:600px; margin:0 auto;">When you replace scattered marketing with a single acquisition engine, growth stops feeling like a guessing game.</p>
+    </div>
     
     <div class="outcome-grid">
-      <div class="outcome-item">
+      <div class="outcome-item reveal delay-1">
         <div class="outcome-icon">✓</div>
         <div class="outcome-text">
           <strong>Predictable Pipeline</strong>
           <p class="body-text">Your calendar fills consistently, week over week, without relying on unpredictable word-of-mouth.</p>
         </div>
       </div>
-      <div class="outcome-item">
+      <div class="outcome-item reveal delay-2">
         <div class="outcome-icon">✓</div>
         <div class="outcome-text">
           <strong>Premium Clients Only</strong>
           <p class="body-text">Price-shoppers disappear. You attract clients pre-sold on your value because your positioning demands it.</p>
         </div>
       </div>
-      <div class="outcome-item">
+      <div class="outcome-item reveal delay-3">
         <div class="outcome-icon">✓</div>
         <div class="outcome-text">
           <strong>Instant Nurture</strong>
@@ -430,7 +532,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <div class="testimonial-strip">
-  <div class="wrap">
+  <div class="wrap reveal">
     <p class="test-quote">"We stopped worrying about where the next patient was coming from. The system just works in the background while we focus on the clinic."</p>
     <div class="test-author">— iSmile Dental, Ohio USA</div>
   </div>
@@ -438,28 +540,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section id="system">
   <div class="wrap">
-    <div class="center">
+    <div class="center reveal">
       <span class="label">The Engine</span>
       <h2>Four Pillars of<br><em>Acquisition Systems</em></h2>
     </div>
     
     <div class="sys-grid">
-      <div class="sys-card">
+      <div class="sys-card reveal delay-1">
         <div class="sys-num">1</div>
         <h3>Premium Positioning</h3>
         <p class="body-text">We redesign your offer and messaging to make price irrelevant. You become the unmistakable premium choice in your local area.</p>
       </div>
-      <div class="sys-card">
+      <div class="sys-card reveal delay-2">
         <div class="sys-num">2</div>
         <h3>Precision Visibility</h3>
         <p class="body-text">We capture active buyers exactly when they are searching for you using pinpoint Google and Meta advertising.</p>
       </div>
-      <div class="sys-card">
+      <div class="sys-card reveal delay-3">
         <div class="sys-num">3</div>
         <h3>Conversion Architecture</h3>
         <p class="body-text">Traffic is useless if it doesn't convert. We build high-speed, psychologically optimized pages designed strictly to generate bookings.</p>
       </div>
-      <div class="sys-card">
+      <div class="sys-card reveal delay-4">
         <div class="sys-num">4</div>
         <h3>Automated Nurture</h3>
         <p class="body-text">Never lose a lead to slow follow-up again. Systems contact, qualify, and book leads within minutes while you focus on the work.</p>
@@ -470,27 +572,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section id="proof">
   <div class="wrap">
-    <div class="center">
+    <div class="center reveal">
       <span class="label">The Reality</span>
       <h2>The proof is in the<br><em>profitability.</em></h2>
     </div>
 
     <div class="metrics-grid">
-      <div class="metric-card">
+      <div class="metric-card reveal delay-1">
         <span class="metric-val">+41%</span>
         <span class="metric-label">Avg. Lead-to-Book Rate</span>
       </div>
-      <div class="metric-card">
+      <div class="metric-card reveal delay-2">
         <span class="metric-val">2.8x</span>
         <span class="metric-label">Increase in Inquiry Volume</span>
       </div>
-      <div class="metric-card">
+      <div class="metric-card reveal delay-3">
         <span class="metric-val">&lt;2m</span>
         <span class="metric-label">Automated Response Time</span>
       </div>
     </div>
 
-    <div class="industry-strip">
+    <div class="industry-strip reveal delay-4">
       Built For: Clinics · Photographers · Hotels · Wellness Brands · Premium Local Services · Agencies
     </div>
   </div>
@@ -499,7 +601,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="why-it-works">
   <div class="wrap">
     <div class="about-grid">
-      <div>
+      <div class="reveal">
         <span class="label">The Strategist</span>
         <h2>Agencies sell ads.<br><em>I build infrastructure.</em></h2>
         <p class="body-text">Most great local businesses don't fail because they lack passion or effort. They plateau because their growth relies entirely on <em>manual effort.</em></p>
@@ -513,7 +615,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="sig">Pritam</div>
         <div class="about-title">Founder & Customer Acquisition Strategist</div>
       </div>
-      <div class="about-image">
+      <div class="about-image reveal delay-2">
         <img src="about-me.jpg" alt="Pritam Chowdhury" loading="lazy">
       </div>
     </div>
@@ -522,7 +624,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section id="cta">
   <div class="wrap">
-    <div class="cta-box">
+    <div class="cta-box reveal">
       <span class="label">Take Control</span>
       <h2>Book 15 minutes.<br>Walk away with <em>clarity.</em></h2>
       <p class="body-large" style="margin-bottom: 2.5rem;">A focused diagnostic of your current visibility and a clear blueprint of how to build your acquisition engine. No pitch. No templates.</p>
@@ -536,6 +638,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.15 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll(".reveal");
+    revealElements.forEach(el => observer.observe(el));
+  });
+</script>
 
 </body>
 </html>
